@@ -25,41 +25,40 @@ class MainActivity : AppCompatActivity() , View.OnClickListener{
         button2.setOnClickListener(this)
         button3.setOnClickListener(this)
         button4.setOnClickListener(this)
-
     }
 
 //各ボタンが押された時
     override fun onClick(v: View) {
 
-    val value1 = edittext1.text.toString().toDouble()
-    val value2 = edittext2.text.toString().toDouble()
+
 
     val intent = Intent(this, SecondActivity::class.java)
 
+        try{
+            val value1 = edittext1.text.toString().toDouble()
+            val value2 = edittext2.text.toString().toDouble()
+            
+            if (v.id == R.id.button1) {
+                intent.putExtra("VALUE", value1 + value2)
+                startActivity(intent)
+            } else if (v.id == R.id.button2) {
+                intent.putExtra("VALUE", value1 - value2)
+                startActivity(intent)
+            } else if (v.id == R.id.button3) {
+                intent.putExtra("VALUE", value1 * value2)
+                startActivity(intent)
+            } else if (v.id == R.id.button4) {
+                intent.putExtra("VALUE", value1 / value2)
+                startActivity(intent)
+            }
 
-    //try {
-
-        if (v.id == R.id.button1) {
-            intent.putExtra("answer", value1 + value2)
-            startActivity(intent)
-        } else if (v.id == R.id.button2) {
-            intent.putExtra("answer", value1 - value2)
-            startActivity(intent)
-        } else if (v.id == R.id.button3) {
-            intent.putExtra("answer", value1 * value2)
-            startActivity(intent)
-        } else if (v.id == R.id.button4) {
-            intent.putExtra("answer", value1 / value2)
-            startActivity(intent)
-        }
-
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-
+        }catch (e: Exception){
+            Snackbar.make(layout, "数字を入力してください", Snackbar.LENGTH_LONG).show()
         }
 
     }
+
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
 
