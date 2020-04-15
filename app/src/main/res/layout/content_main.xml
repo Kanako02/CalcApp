@@ -10,17 +10,20 @@
     android:orientation="vertical">
 
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/edittext1"
-        tools:ignore="MissingConstraints" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edittext1"
+        tools:ignore="MissingConstraints"
+        android:inputType = "numberDecimal"/>
+
+    <EditText
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/edittext2"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        android:inputType = "numberDecimal"/>
 
     <Button
         android:layout_width="wrap_content"

@@ -8,10 +8,9 @@ import android.view.MenuItem
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 import android.content.Intent
-
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import java.time.temporal.ValueRange
+
 
 // View.OnClickListener追加
 class MainActivity : AppCompatActivity() , View.OnClickListener{
@@ -20,27 +19,45 @@ class MainActivity : AppCompatActivity() , View.OnClickListener{
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-//button1追加
+
+        //button追加
         button1.setOnClickListener(this)
+        button2.setOnClickListener(this)
+        button3.setOnClickListener(this)
+        button4.setOnClickListener(this)
+
     }
 
-    override fun onClick(v: View?) {
+//各ボタンが押された時
+    override fun onClick(v: View) {
 
+    val value1 = edittext1.text.toString().toDouble()
+    val value2 = edittext2.text.toString().toDouble()
+
+    val intent = Intent(this, SecondActivity::class.java)
+
+
+    //try {
+
+        if (v.id == R.id.button1) {
+            intent.putExtra("answer", value1 + value2)
+            startActivity(intent)
+        } else if (v.id == R.id.button2) {
+            intent.putExtra("answer", value1 - value2)
+            startActivity(intent)
+        } else if (v.id == R.id.button3) {
+            intent.putExtra("answer", value1 * value2)
+            startActivity(intent)
+        } else if (v.id == R.id.button4) {
+            intent.putExtra("answer", value1 / value2)
+            startActivity(intent)
+        }
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
+
         }
-//secondに移動
-        val intent = Intent(this, SecondActivity::class.java)
-
- //edittextとつなげる
-        intent.putExtra("VALUE1", toString())
-        intent.putExtra("VALUE2", toString())
-
-
-
-        startActivity(intent)
 
     }
 
